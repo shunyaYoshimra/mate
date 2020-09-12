@@ -1,0 +1,41 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :username, 'お名前' %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'パスワード' %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'パスワード(確認)' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <label for="submit">
+      <a class="waves-effect waves-light btn pink"><i class="material-icons left">cloud</i>登録</a>
+      <%= f.submit "登録", class: 'hide', id: 'submit' %>
+    </label>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

@@ -17,3 +17,17 @@
  $primary-color: color("blue", "lighten-2") !default;
  $secondary-color: color("indigo", "base") !default;
  @import 'materialize';
+
+ #footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  .show {
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+ }
+ 
+
+ 

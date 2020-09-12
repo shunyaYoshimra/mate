@@ -1,4 +1,4 @@
-<footer id="footer" class="page-footer indigo" style="position: fixed; bottom: 0; width: 100%; z-index: 100;">
+<footer id="footer" class="page-footer indigo">
   <transition name="slide">
     <div class="container" v-if="show">
       <div class="row">
@@ -20,10 +20,9 @@
   </transition>
   <div class="footer-copyright">
     <div class=" container center">
-      <div @click="show = !show" v-if="!show"><i style="border-radius: 50%; border: 1px solid #fff;" class="material-icons">arrow_drop_up</i></div>
-      <div @click="show = !show" v-else><i style="border-radius: 50%; border: 1px solid #fff;" class="material-icons">arrow_drop_down</i></div>
+      <div @click="show = !show" v-if="!show"><i  class="material-icons show">arrow_drop_up</i></div>
+      <div @click="show = !show" v-else><i class="material-icons show">arrow_drop_down</i></div>
       © 2020 Mates
-      <a class="grey-text text-lighten-4 right" href="#!"></a>
     </div>
   </div>
 </footer>
