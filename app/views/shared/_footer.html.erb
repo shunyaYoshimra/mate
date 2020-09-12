@@ -1,0 +1,31 @@
+<footer id="footer" class="page-footer indigo" style="position: fixed; bottom: 0; width: 100%; z-index: 100;">
+  <transition name="slide">
+    <div class="container" v-if="show">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Mates</h5>
+          <p class="grey-text text-lighten-4">Matesは、シェアハウス専用のSNSです。あなたのシェアハウスでの暮らしをみんなに共有してみましょう。</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text"> Contact</h5>
+          <ul>
+            <li>作成者　吉村舜也</li>
+            <p>Ruby on Rails　/ Vue.js　/　AWS　/ Docker をメインに勉強しています。</p>
+            <li class="valign-wrapper">maoorgri1015@gmail.com</li>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/shunyaYoshimra">github　アカウント</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </transition>
+  <div class="footer-copyright">
+    <div class=" container center">
+      <div @click="show = !show" v-if="!show"><i style="border-radius: 50%; border: 1px solid #fff;" class="material-icons">arrow_drop_up</i></div>
+      <div @click="show = !show" v-else><i style="border-radius: 50%; border: 1px solid #fff;" class="material-icons">arrow_drop_down</i></div>
+      © 2020 Mates
+      <a class="grey-text text-lighten-4 right" href="#!"></a>
+    </div>
+  </div>
+</footer>
+
+<%= javascript_pack_tag "footer" %>
