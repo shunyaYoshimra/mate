@@ -10,14 +10,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="<%= controller.controller_name %>-<%= controller.action_name %>">
     <%= render 'shared/header' %>
       <div class="container">
         <div class="row">
-          <div class="col hide-on-small-only l4">
+          <div class="col hide-on-small-only l4 m3">
             <%= render 'shared/sidenav' %>
           </div>
-          <div class="col s12 l6 offset-l2">
+          <div class="col s12 m9 l7 offset-l1">
             <%= yield %>
           </div>
         </div>

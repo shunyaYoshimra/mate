@@ -1,2 +1,23 @@
-<h1>Profiles#new</h1>
-<p>Find me in app/views/profiles/new.html.erb</p>
+<div class="row">
+  <div class="card-panel">
+    <%= form_with model: @profile, local: true do |f| %>
+      <%= f.label :profile, '自己紹介' %>
+      <%= f.text_area :profile, class: 'profile-form' %>
+      <br><br>
+      <label for="image">
+        <i class="material-icons medium">add_a_photo</i>背景画像
+        <%= f.file_field :image, id: 'image', class: 'hide' %>
+      </label>
+      <br><br>
+      <label for="avatar">
+        <i class="material-icons medium">face</i>アイコン画像
+        <%= f.file_field :avatar, id: 'avatar', class: 'hide' %>
+      </label>
+      <br><br>
+      <label for="btn">
+        <a class="waves-effect waves-light btn pink"><i class="material-icons right">send</i>作成</a>
+        <%= f.submit '作成', class: 'hide', id: 'btn' %>
+      </label>
+    <% end %>
+  </div>
+</div>
