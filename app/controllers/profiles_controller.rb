@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to profile, notice: 'プロフィールを編集しました。'
+      redirect_to @profile, notice: 'プロフィールを編集しました。'
     else
       render :edit
     end

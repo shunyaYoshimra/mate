@@ -18,6 +18,10 @@
  $secondary-color: color("indigo", "base") !default;
  @import 'materialize';
 
+ body {
+   margin-bottom: 100px;
+ }
+
  img {
    max-width: 100%;
  }

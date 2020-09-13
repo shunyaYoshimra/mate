@@ -1,2 +1,35 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div id="profile">
+  <div class="card">
+    <div class="card-image">
+      <%= image_tag @profile.image %>
+      <span class="card-title"><%= @profile.user.username %></span>
+      <a class="btn-floating halfway-fab waves-effect waves-light btn-large"><%= image_tag @profile.avatar %></a>
+    </div>
+    <div class="card-content">
+      <p>
+        <%= @profile.profile %>
+      </p>
+    </div>
+    <% if @profile.user == current_user %>
+    <div class="card-action">
+      <span>自己紹介を編集する</span>
+      <i v-if="!show" @click="show = !show" class="material-icons right">arrow_drop_down</i>
+      <i v-else @click="show = !show" class="material-icons right">arrow_drop_up</i>
+      <div v-if="show">
+        <br><br>
+        <%= form_with model: @profile, local: true do |f| %>
+          <%= f.label :profile, '自己紹介' %>
+          <%= f.text_area :profile, class: 'profile-form' %>
+          <br><br>
+          <label for="update-profile">
+            <a class="waves-effect waves-light btn pink"><i class="material-icons right">send</i>編集</a>
+            <%= f.submit id: 'update-profile', class: 'hide' %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_pack_tag "profile" %>
