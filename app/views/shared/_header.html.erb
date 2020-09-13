@@ -5,7 +5,26 @@
       <i class="material-icons">menu</i>
     </a>
     <ul class="right hide-on-med-and-down">
-      <% if user_signed_in?%>
+      <% if user_signed_in? %>
+        <li>
+          <% if current_user.profile %>
+            <%= link_to profile_path(current_user.profile) do %>
+              <% if current_user.profile.avatar.attached? %>
+                <%= image_tag current_user.profile.avatar, class: 'btn-floating' %>
+              <% else %>
+                <%= image_tag 'default_user.png', class: 'btn-floating' %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to new_profile_path do %>
+              <% if current_user.profile.avatar.attached? %>
+                <%= image_tag current_user.profile.avatar, class: 'btn-floating' %>
+              <% else %>
+                <%= image_tag 'default_user.png', class: 'btn-floating' %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </li>
         <li>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         </li>
@@ -26,11 +45,17 @@
   <li>
     <div class="user-view">
       <div class="background">
-        <%= image_tag 'default_background.png' %>
+        <% if current_user.profile.image.attached? %>
+          <%= image_tag current_user.profile.image %>
+        <% else %>
+          <%= image_tag 'default_background.png' %>
+        <% end %>
       </div>
-     
-        <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
-      
+        <% if current_user.profile.avatar.attached? %>
+          <%= image_tag current_user.profile.avatar, class: 'circle z-depth-3' %>
+        <% else %>
+          <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
+        <% end %>
       <p class="white-text name"><%= current_user.username %></p>
       <p class="white-text email"><%= current_user.email %></p>
     </div>
