@@ -2,25 +2,23 @@ require 'rails_helper'
 
 RSpec.describe "Profiles", type: :request do
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/profiles/show"
-      expect(response).to have_http_status(:success)
-    end
+  before do
+    user = FactoryBot.create(:user)
+    sign_in user
+    @params = FactoryBot.attributes_for(:profile)
   end
 
   describe "GET /new" do
     it "returns http success" do
-      get "/profiles/new"
-      expect(response).to have_http_status(:success)
+      get new_profile_path
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET /edit" do
+  describe "POST /create" do
     it "returns http success" do
-      get "/profiles/edit"
-      expect(response).to have_http_status(:success)
+      post profiles_path, params: { profile: @params }
+      expect(response).to have_http_status(302)
     end
   end
-
 end
