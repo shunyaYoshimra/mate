@@ -13,7 +13,14 @@
   <body>
     <%= render 'shared/header' %>
       <div class="container">
-        <%= yield %>
+        <div class="row">
+          <div class="col hide-on-small-only l4">
+            <%= render 'shared/sidenav' %>
+          </div>
+          <div class="col s12 l6 offset-l2">
+            <%= yield %>
+          </div>
+        </div>
       </div>
     <%= render 'shared/footer' %>
   </body>

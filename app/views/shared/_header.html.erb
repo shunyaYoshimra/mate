@@ -35,6 +35,15 @@
       <p class="white-text email"><%= current_user.email %></p>
     </div>
   </li>
+  <% if current_user.profile %>
+    <li>
+      <%= link_to 'プロフィール', profile_path(current_user.new_profile_path) %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'プロフィール', new_profile_path %>
+    </li>
+  <% end %>
   <li>
     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
   </li>

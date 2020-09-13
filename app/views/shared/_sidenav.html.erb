@@ -1,0 +1,16 @@
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Mates</h4></li>
+  <li class="collection-item">
+    <% if current_user.profile %>
+      <%= link_to 'プロフィール', profile_path(current_user.profile) %>
+    <% else %>
+      <%= link_to 'プロフィール', new_profile_path %>
+    <% end %>
+  </li>
+  <li class="collection-item">menu</li>
+  <li class="collection-item">menu</li>
+  <li class="collection-item">menu</li>
+  <li class="collection-item">menu</li>
+  <li class="collection-item">menu</li>
+  <li class="collection-item">menu</li>
+</ul>
