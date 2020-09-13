@@ -17,11 +17,7 @@
             <% end %>
           <% else %>
             <%= link_to new_profile_path do %>
-              <% if current_user.profile.avatar.attached? %>
-                <%= image_tag current_user.profile.avatar, class: 'btn-floating' %>
-              <% else %>
-                <%= image_tag 'default_user.png', class: 'btn-floating' %>
-              <% end %>
+              <%= image_tag 'default_user.png', class: 'btn-floating' %>
             <% end %>
           <% end %>
         </li>
@@ -45,14 +41,22 @@
   <li>
     <div class="user-view">
       <div class="background">
-        <% if current_user.profile.image.attached? %>
-          <%= image_tag current_user.profile.image %>
+        <% if current_user.profile %>
+          <% if current_user.profile.image.attached? %>
+            <%= image_tag current_user.profile.image %>
+          <% else %>
+            <%= image_tag 'default_background.png' %>
+          <% end %>
         <% else %>
           <%= image_tag 'default_background.png' %>
         <% end %>
       </div>
-        <% if current_user.profile.avatar.attached? %>
-          <%= image_tag current_user.profile.avatar, class: 'circle z-depth-3' %>
+        <% if current_user.profile %>
+          <% if current_user.profile.avatar.attached? %>
+            <%= image_tag current_user.profile.avatar, class: 'circle z-depth-3' %>
+          <% else %>
+            <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
+          <% end %>
         <% else %>
           <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
         <% end %>
