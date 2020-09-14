@@ -1,2 +1,23 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h3 class="center">投稿</h3>
+<div class="card-panel">
+  <small>
+    あなたのシェアハウスでの日常をみんなにシェアしてみよう！
+  </small>
+  <br><br>
+  <%= form_with model: @post, local: true do |f| %>
+    <%= f.label :content %>
+    <%= f.text_area :conten %>
+    <br><br>
+    <label>
+      <i class="material-icons medium">add_a_photo</i>
+      <br>
+      <small>写真も載せてみよう</small>
+      <%= f.file_field :image, id: 'image', class: 'hide' %>
+    </label>
+    <br><br>
+    <label for="btn">
+      <a class="waves-effect waves-light btn pink"><i class="material-icons right">send</i>投稿</a>
+      <%= f.submit '作成', class: 'hide', id: 'btn' %>
+    </label>
+  <% end %>
+</div>
