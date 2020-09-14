@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :api, { format: 'json' } do
+    resources :likes, only: [:index, :create, :destroy]
+  end
   get '/posts', to: 'posts#new'
   get '/profiles', to: 'profiles#new'
   resources :posts, only: [:new, :create, :edit, :update, :destroy]
