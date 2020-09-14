@@ -13,6 +13,9 @@
 }
 
 #profiles-show {
+  img {
+    max-height: 400px;
+  }
   .profile-form {
     height: calc( 1.3em * 7 );
     line-height: 1.3;

@@ -1,9 +1,21 @@
 <div id="profile">
   <div class="card">
     <div class="card-image">
-      <%= image_tag @profile.image %>
+      <% if @profile.image.attached? %>
+        <%= image_tag @profile.image %>
+      <% else %>
+        <%= image_tag 'default_background.png' %>
+      <% end %>
       <span class="card-title"><%= @profile.user.username %></span>
-      <a class="btn-floating halfway-fab waves-effect waves-light btn-large"><%= image_tag @profile.avatar %></a>
+      <% if @profile.avatar.attached? %>
+        <button class="btn-floating halfway-fab waves-effect waves-light btn-large">
+          <%= image_tag @profile.avatar %>
+        </button>
+      <% else %>
+        <button class="btn-floating halfway-fab waves-effect waves-light btn-large">
+          <%= image_tag 'default_user.png' %>
+        </button>
+      <% end %>
     </div>
     <div class="card-content">
       <p>
