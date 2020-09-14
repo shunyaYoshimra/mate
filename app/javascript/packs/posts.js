@@ -1,13 +1,16 @@
 import Vue from 'vue/dist/vue.esm'
 import axios from 'axios'
+import Store from '../store/store'
 import LikeButton from '../components/likeButton.vue'
+import CommentsArea from '../components/commentsArea.vue'
 
 const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
 axios.defaults.headers.common["X-CSRF-Token"] = token;
 
 new Vue({
   el: '#posts',
-  components: { LikeButton },
+  store: Store,
+  components: { LikeButton, CommentsArea },
   data: {
     id: null,
     postId: null
