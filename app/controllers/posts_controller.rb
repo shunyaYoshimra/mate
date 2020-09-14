@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:edit, :update]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
   end
 
   def create
-    post = current_user.posts.new(post_params)
-    if post.save
+    @post = current_user.posts.new(post_params)
+    if @post.save
       redirect_to root_url, notice: '投稿しました。'
     else
       render :new
@@ -24,6 +24,11 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    head :no_content
   end
 
   private

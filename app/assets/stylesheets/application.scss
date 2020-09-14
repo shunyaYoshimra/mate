@@ -36,6 +36,25 @@
     border: 1px solid #fff;
   }
  }
+
+ .alert {
+  color:#262626; 
+  background:#FFEBE8;
+  text-align: center;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+}
+
+.fade-enter,
+ .fade-leave-to{
+   opacity: 0;
+ }
+
+ .fade-enter-active,
+ .fade-leave-active{
+   transition: .5s;
+ }
+
  
 
  

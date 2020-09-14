@@ -22,7 +22,7 @@
         <%= @profile.profile %>
       </p>
     </div>
-    <% if @profile.user == current_user %>
+    <% if current_user?(@profile.user) %>
     <div class="card-action">
       <span>自己紹介を編集する</span>
       <i v-if="!show" @click="show = !show" class="material-icons right">arrow_drop_down</i>

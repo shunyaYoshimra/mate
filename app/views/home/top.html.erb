@@ -1,2 +1,33 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div id="posts">
+  <% if @posts %>
+    <% @posts.each do |post| %>
+      <transition name="fade">
+        <div v-if="id !== <%= post.id %>" class="card">
+          <div class="card-image">
+            <% if post.image.attached? %>
+              <%= image_tag post.image %>
+            <% end %>
+          </div>
+          <div class="card-content">
+            <%= link_to profile_path(post.user.profile) do %>
+              <% if post.user.profile.avatar.attached? %>
+                <%= image_tag post.user.profile.avatar, class: 'btn-floating' %>
+              <% else %>
+                <%= image_tag 'default_user.png', class: 'btn-floating' %>
+              <% end %>
+            <% end %>
+            <span><%= post.user.username %></span>
+            <% if current_user?(post.user) %>
+              <i class="material-icons small right grey-text" @click="deletePost(<%= post.id %>)">delete</i>
+            <% end %>
+            <hr>
+            <p><%= post.content %></p>
+            <small><%= post.created_at.to_s(:datetime_jp) %></small>
+          </div>
+        </div>
+      </transition>
+    <% end %>
+  <% end %>
+</div>
+
+<%= javascript_pack_tag "posts" %>
