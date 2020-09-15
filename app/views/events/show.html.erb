@@ -1,2 +1,64 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="row" id="event-detail">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-content">
+          <% if @event.user.profile.avatar.attached? %>
+            <button class="btn-floating"><%= image_tag @event.user.profile.avatar %></button>
+          <% else %>
+            <button class="btn-floating"><%= image_tag 'default_user.png' %></button>
+          <% end %>
+          <%= @event.user.username %>さん
+          <h5><%= @event.title %></h5>          
+          <p><%= @event.content %></p>
+          <br><br>
+          開催場所: <%= @event.address %>
+          <i class="material-icons">location_on</i>
+          <div  id="map" style="height: 200px; width: 90%;">
+          </div>
+          <br>
+          開催日: <%= @event.date %>
+          <br>
+          参加費: 
+          <% if @event.paid %>
+            有料 
+            <% if @event.price %>
+              <%= @event.price %>円
+            <% end %>
+          <% else %>
+            無料
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDR4RrRRiuty9o2rOCZq3ZvfSeEjfUm0aQ&callback=initMap", async: true, defer: true %> 
+
+
+  <script>
+  function initMap() {
+    var test ={ lat: <%= @event.latitude %>, lng: <%= @event.longitude %> };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: test
+    });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = "住所：<%= @event.address  %> ";
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+      position:test,
+      map: map,
+      title: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+
+</script>
