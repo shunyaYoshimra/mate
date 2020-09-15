@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :participants, only: [:create, :destroy]
   resources :events
   namespace :api, { format: 'json' } do
     resources :likes, only: [:index, :create, :destroy]
