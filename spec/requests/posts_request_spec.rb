@@ -1,19 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
+  before do
+    user = FactoryBot.create(:user)
+    sign_in user
+    @post = user.posts.create(
+      content: 'test-content'
+    )
+    @params = FactoryBot.attributes_for(:post)
+  end
 
   describe "GET /new" do
     it "returns http success" do
-      get "/posts/new"
-      expect(response).to have_http_status(:success)
+      get new_post_path
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET /edit" do
+  describe "POST /create" do
     it "returns http success" do
-      get "/posts/edit"
-      expect(response).to have_http_status(:success)
+      post posts_path, params: { post: @params }
+      expect(response).to have_http_status(302)
     end
   end
 
+  describe "DELETE /destroy" do
+    it "returns http success" do
+      delete post_path(@post)
+      expect(response).to have_http_status(204)
+    end
+  end
 end

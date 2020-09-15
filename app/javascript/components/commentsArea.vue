@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <input class="comment-form" type="text" placeholder="コメント" v-model="content" />
-    <button class="btn-floating btn-small pulse indigo" @click="createComment()">
+    <button class="btn-floating btn-small pulse pink" @click="createComment()">
       <i class="material-icons">add</i>
     </button>
     <transition-group name="fade">
