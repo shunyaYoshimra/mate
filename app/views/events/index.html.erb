@@ -1,20 +1,30 @@
-<% @events.each do |event| %>
-    <div class="card">
-      <div class="card-content">
-        <%= link_to profile_path(event.user) do %>
-          <% if event.user.profile.avatar.attached? %>
-            <button class="btn-floating"><%= image_tag event.user.profile.avatar %></button>
-          <% else %>
-            <button class="btn-floating"><%= image_tag 'default_user.png' %></button>
+<div id="events">
+  <% @events.each do |event| %>
+    <transition name="fade">
+      <div class="card" v-if="id !== <%= event.id %>">
+        <div class="card-content">
+          <%= link_to profile_path(event.user) do %>
+            <% if event.user.profile.avatar.attached? %>
+              <button class="btn-floating"><%= image_tag event.user.profile.avatar %></button>
+            <% else %>
+              <button class="btn-floating"><%= image_tag 'default_user.png' %></button>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= event.user.username %>
-        <span class="card-title"><%= event.title %></span></button>
-        <p><%= event.content %></p>
+          <%= event.user.username %>
+          <span class="card-title"><%= event.title %></span></button>
+          <p><%= event.content %></p>
+          <% if current_user?(event.user) %>
+            <i class="material-icons small right grey-text delete" @click="deleteEvent(<%= event.id %>)">delete</i>
+          <% end %>
+          <br>
+        </div>
+        <div class="card-action">
+          <%= link_to '詳細を見る', event_path(event) %>
+        </div>
       </div>
-      <div class="card-action">
-        <%= link_to '詳細を見る', event_path(event) %>
-      </div>
-    </div>
-<% end %>
+    </transition>
+  <% end %>
+</div>
+
+<%= javascript_pack_tag "events" %>
 
