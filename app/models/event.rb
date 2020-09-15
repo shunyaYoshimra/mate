@@ -8,4 +8,5 @@ class Event < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   has_many :participants, dependent: :destroy
+  has_many :joiners, through: :participants, source: :user
 end

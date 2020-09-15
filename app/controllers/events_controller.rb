@@ -15,6 +15,9 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
     if @event.save
+      participant = @event.participants.new
+      participant.user_id = current_user.id
+      participant.save
       redirect_to event_url(@event), notice: 'イベントを企画しました。'
     else
       render :new
