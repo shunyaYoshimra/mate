@@ -77,6 +77,12 @@
     <%= link_to '投稿', new_post_path %>
   </li>
   <li>
+    <%= link_to 'イベント一覧', events_path %>
+  </li>
+  <li>
+    <%= link_to 'イベント開催', new_event_path %>
+  </li>
+  <li>
     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
   </li>
   <% else %>
