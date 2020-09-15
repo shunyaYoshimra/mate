@@ -7,4 +7,5 @@ class Event < ApplicationRecord
   validates :date, presence: true
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  has_many :participants, dependent: :destory
 end
