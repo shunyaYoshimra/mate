@@ -9,7 +9,8 @@ axios.defaults.headers.common["X-CSRF-Token"] = token;
 
 export default new Vuex.Store({
   state: {
-    comments: []
+    comments: [],
+    messages: []
   },
   mutations: {
     fetchComments(state, id) {
@@ -17,6 +18,16 @@ export default new Vuex.Store({
       axios.get(`/api/comments?id=${id}`).then((res) => {
         for (var i = 0; i < res.data.comments.length; i++) {
           state.comments.push(res.data.comments[i])
+        }
+      }, (error) => {
+        console.log(error)
+      })
+    },
+    fetchMessages(state, id) {
+      state.messages = []
+      axios.get(`/api/messages?id=${id}`).then((res) => {
+        for (var i = 0; i < res.data.messages.length; i++) {
+          state.messages.push(res.data.messages[i])
         }
       }, (error) => {
         console.log(error)

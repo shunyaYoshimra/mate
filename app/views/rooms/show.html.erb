@@ -1,2 +1,4 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div id="chat-room">
+  <chat-room :roomid="<%= @room.id %>" :userid="<%= current_user.id %>"></chat-room>
+</div>
+<%= javascript_pack_tag "chatRoom" %>

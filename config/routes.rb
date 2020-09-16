@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api, { format: 'json' } do
     resources :likes, only: [:index, :create, :destroy]
     resources :comments, only: [:index, :show, :create, :destroy]
+    resources :messages, only: [:index, :show, :create]
   end
   get '/posts', to: 'posts#new'
   get '/profiles', to: 'profiles#new'
