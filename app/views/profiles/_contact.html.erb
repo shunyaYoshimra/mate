@@ -1,0 +1,17 @@
+<% unless current_user?(@user) %>
+  <% if @isRoom %>
+    <%= link_to room_path(@roomId) do %>
+      <button class="btn-floating pulse pink"><i class="material-icons">mail</i></button>
+    <% end %>
+  <% else %>
+    <%= form_with model: @room, local: true do |f|%>
+      <%= fields_for @entry do |e|%>
+        <%= e.hidden_field :user_id, value: @profile.user.id%>
+      <% end %>
+      <label for="make-room">
+        <button class="btn-floating pulse pink"><i class="material-icons">mail</i></button>
+        <%= f.submit id: 'make-room', style: 'display: none;' %>
+      </label>
+    <% end %>
+  <% end %>
+<% end %>

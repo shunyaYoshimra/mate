@@ -1,0 +1,25 @@
+<% if @rooms.any? %>
+<ul class="collection">
+  <% @rooms.each do |room| %>
+  <% user =  opponent_user(room)  %>
+      <li class="collection-item avatar">
+        <%= link_to room_path(room) do %>
+        <% if user.profile.avatar.attached? %>
+          <%= image_tag user.profile.avatar, class: 'circle' %>
+        <% else %>
+          <%= image_tag 'default_user.png', class: 'circle' %>
+        <% end %>
+        <p class="title"><%= user.username %></p>
+        <p>First Line
+        </p>
+        <% end %>
+      </li>
+  <% end %>
+</ul>
+<% else %>
+  <div class="card">
+    <div class="card-content">
+      <p>メッセージはまだありません。ユーザーの詳細ページからメッセージを送ってみましょう！</p>
+    </div>
+  </div>
+<% end %>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
+  resources :rooms, only: [:index, :show, :create]
   resources :relationships, only: [:create, :destroy]
   resources :participants, only: [:create, :destroy]
   resources :events

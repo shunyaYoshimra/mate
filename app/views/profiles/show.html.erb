@@ -18,8 +18,15 @@
       <% end %>
     </div>
     <div class="card-content">
-      <%= render 'follow_form' %>
-  　　 <%= render 'stats' %>
+      <div class="row">
+        <div class="col">
+          <%= render 'follow_form' %>
+        </div>
+        <div class="col">
+          <%= render 'contact'%>
+        </div>
+      </div>
+  　　 <%= render 'stats' %>  
       <br>
       <p>
         <%= @profile.profile %>

@@ -3,6 +3,22 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def show
+    @currentUserEntries = Entry.where(user_id: current_user.id)
+    @userEntries = Entry.where(user_id: @profile.user.id)
+    unless current_user == @profile.user
+      @currentUserEntries.each do |ce|
+        @userEntries.each do |ue|
+          if ce.room_id == ue.room_id
+            @isRoom = true
+            @roomId = ce.room
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def new
