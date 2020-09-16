@@ -83,6 +83,9 @@
     <%= link_to 'イベント開催', new_event_path %>
   </li>
   <li>
+    <%= link_to 'メッセージ', rooms_path %>
+  </li>
+  <li>
     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
   </li>
   <% else %>
