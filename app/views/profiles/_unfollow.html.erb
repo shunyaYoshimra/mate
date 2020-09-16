@@ -1,0 +1,6 @@
+<%= form_with url: relationship_path(@profile.user), method: :delete do |f| %>
+  <label for="follow-btn">
+    <%= f.submit id: 'follow-btn', class: 'hide'%>
+    <button class="waves-effect waves-light btn indigo"><i class="material-icons left">person</i>フォロー解除</button>
+  </label>
+<% end %>

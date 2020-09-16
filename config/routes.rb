@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :relationships, only: [:create, :destroy]
   resources :participants, only: [:create, :destroy]
   resources :events
   namespace :api, { format: 'json' } do
@@ -8,7 +9,11 @@ Rails.application.routes.draw do
   get '/posts', to: 'posts#new'
   get '/profiles', to: 'profiles#new'
   resources :posts, only: [:new, :create, :edit, :update, :destroy]
-  resources :profiles, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :profiles, only: [:show, :new, :create, :edit, :update, :destroy] do
+    member do
+      get :following, :followers
+    end
+  end
   devise_for :users
   root to: 'home#top'
 end

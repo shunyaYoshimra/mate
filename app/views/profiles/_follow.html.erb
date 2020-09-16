@@ -1,0 +1,7 @@
+<%= form_with url: relationships_path, local: true do |f|%>
+  <%= f.hidden_field :user_id, :value => @profile.user.id %>
+  <label for="follow-btn">
+    <%= f.submit id: 'follow-btn', class: 'hide'%>
+    <button class="waves-effect waves-light btn indigo"><i class="material-icons left">person_add</i>フォロー！</button>
+  </label>
+<% end %>

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col s12 l6">
+    <% @user.followers.each do |follower| %>
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <% if follower.profile.avatar.attached? %>
+            <%= image_tag follower.profile.avatar, class: 'circle' %>
+          <% else %>
+            <%= image_tag 'default_user.png', class: 'circle'%>
+          <% end %>
+          <span class="title"><%= follower.username %></span>
+          <% if follower.profile.profile %>
+            <small style="display: block; width: 70%;"><%= follower.profile.profile %></small>
+          <% else %>
+            <small style="display: block; width: 70%;">自己紹介文が設定されていません.</small>
+          <% end %>
+          <% unless current_user?(follower) %>
+            <div class="secondary-content">
+              <% if current_user.following?(follower) %>
+                <%= form_with url: relationship_path(follower), method: :delete do |f| %>
+                  <label for="follow-btn">
+                    <%= f.submit id: 'follow-btn', class: 'hide'%>
+                      <button class="btn-floating"><i class="material-icons">clear</i></button>
+                  </label>
+                <% end %>
+              <% else %>
+                <%= form_with url: relationships_path, local: true do |f|%>
+                    <%= f.hidden_field :user_id, :value => follower.id %>
+                  <label for="follow-btn">
+                    <%= f.submit id: 'follow-btn', class: 'hide'%>
+                    <button class="btn-floating pink pulse"><i class="material-icons">person_add</i></button>
+                  </label>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>  
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
