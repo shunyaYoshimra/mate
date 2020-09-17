@@ -22,9 +22,11 @@
         <div class="col">
           <%= render 'follow_form' %>
         </div>
-        <div class="col">
-          <%= render 'contact'%>
-        </div>
+        <% if !current_user?(@profile.user) %>
+          <div class="col">
+            <%= render 'contact'%>
+          </div>
+        <% end %>
       </div>
   　　 <%= render 'stats' %>  
       <br>
