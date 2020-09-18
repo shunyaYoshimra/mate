@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries, source: :room
+  has_one :person
+  has_one :house, through: :person
 
   def following?(other_user)
     active_relationships.find_by(following_id: other_user.id)

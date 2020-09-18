@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_060914) do
+ActiveRecord::Schema.define(version: 2020_09_18_035433) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 2020_09_16_060914) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "houses", force: :cascade do |t|
+    t.string "name"
+    t.string "prefecture"
+    t.text "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -94,6 +102,15 @@ ActiveRecord::Schema.define(version: 2020_09_16_060914) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_participants_on_event_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "house_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_id"], name: "index_people_on_house_id"
+    t.index ["user_id"], name: "index_people_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
