@@ -15,10 +15,6 @@
                 <%= image_tag 'default_user.png', class: 'btn-floating' %>
               <% end %>
             <% end %>
-          <% else %>
-            <%= link_to new_profile_path do %>
-              <%= image_tag 'default_user.png', class: 'btn-floating' %>
-            <% end %>
           <% end %>
         </li>
         <li>
@@ -38,56 +34,56 @@
 
 <ul class="sidenav" id="mobile-links">
   <% if user_signed_in?%>
-  <li>
-    <div class="user-view">
-      <div class="background">
-        <% if current_user.profile %>
-          <% if current_user.profile.image.attached? %>
-            <%= image_tag current_user.profile.image %>
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <% if !current_user.profile.nil? %>
+            <% if current_user.profile.image.attached? %>
+              <%= image_tag current_user.profile.image %>
+            <% else %>
+              <%= image_tag 'default_background.png' %>
+            <% end %>
           <% else %>
             <%= image_tag 'default_background.png' %>
           <% end %>
-        <% else %>
-          <%= image_tag 'default_background.png' %>
-        <% end %>
-      </div>
+        </div>
         <% if current_user.profile %>
           <% if current_user.profile.avatar.attached? %>
             <%= image_tag current_user.profile.avatar, class: 'circle z-depth-3' %>
-          <% else %>
+           <% else %>
             <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
           <% end %>
         <% else %>
           <%= image_tag 'default_user.png', class: 'circle z-depth-3' %>
         <% end %>
-      <p class="white-text name"><%= current_user.username %></p>
-      <p class="white-text email"><%= current_user.email %></p>
-    </div>
-  </li>
-  <% if current_user.profile %>
-    <li>
-      <%= link_to 'プロフィール', profile_path(current_user.profile) %>
+        <p class="white-text name"><%= current_user.username %></p>
+        <p class="white-text email"><%= current_user.email %></p>
+      </div>
     </li>
-  <% else %>
-    <li>
-      <%= link_to 'プロフィール', new_profile_path %>
-    </li>
-  <% end %>
-  <li>
-    <%= link_to '投稿', new_post_path %>
-  </li>
-  <li>
-    <%= link_to 'イベント一覧', events_path %>
-  </li>
-  <li>
-    <%= link_to 'イベント開催', new_event_path %>
-  </li>
-  <li>
-    <%= link_to 'メッセージ', rooms_path %>
-  </li>
-  <li>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-  </li>
+    <% if current_user.profile %>
+      <li>
+        <%= link_to 'プロフィール', profile_path(current_user.profile) %>
+      </li>
+      <li>
+        <%= link_to '投稿', new_post_path %>
+      </li>
+      <li>
+        <%= link_to 'イベント一覧', events_path %>
+      </li>
+      <li>
+        <%= link_to 'イベント開催', new_event_path %>
+      </li>
+      <li>
+        <%= link_to 'メッセージ', rooms_path %>
+      </li>
+      <li>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'まずプロフィールを設定する。', new_profile_path %>
+      </li>
+    <% end %>
   <% else %>
     <li>
       <%= link_to '登録', new_user_registration_path %>

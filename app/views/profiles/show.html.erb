@@ -54,6 +54,106 @@
     </div>
     <% end %>
   </div>
+  <br><br>
+  <div class="row">
+    <div class="col">
+      <a class="waves-effect waves-light btn" @click="showNumber = 1"><i class="material-icons left">brush</i>投稿</a>
+    </div>
+    <div class="col">
+      <a class="waves-effect waves-light btn" @click="showNumber = 2"><i class="material-icons left">favorite</i>お気に入り</a>
+    </div>
+    <div class="col">
+      <a class="waves-effect waves-light btn" @click="showNumber = 3"><i class="material-icons left">grade</i>イベント</a>
+    </div>
+  </div>
+  <div class="post" v-if="showNumber == 1">
+    <div class="card-panel">
+      <span>
+        あなたの投稿が表示されます。
+      </span>
+    </div>
+    <% if @profile.user.posts %>
+      <% @profile.user.posts.each do |post| %>
+        <div class="card">
+          <% if post.image.attached? %>
+            <div class="card-image">
+              <%= image_tag post.image %>
+            </div>
+          <% end %>
+          <div class="card-content">
+            <% if post.user.profile.avatar.attached? %>
+              <%= image_tag post.user.profile.avatar, class: 'btn-floating '%>
+            <% else %>
+              <%= image_tag 'default_user.png', class: 'btn-floating '%>
+            <% end %>
+            <%= post.user.username %>
+            <p><%= post.content %></p>
+            <small><%= post.created_at.to_s(:datetime_jp)%></small>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="favorite" v-if="showNumber == 2">
+    <div class="card-panel">
+      <span>
+        あなたのお気に入りの投稿が表示されます。
+      </span>
+    </div>
+    <% if @profile.user.like_posts %>
+      <% @profile.user.like_posts.each do |post| %>
+        <div class="card">
+          <% if post.image.attached? %>
+            <div class="card-image">
+              <%= image_tag post.image %>
+            </div>
+          <% end %>
+          <div class="card-content">
+            <% if post.user.profile.avatar.attached? %>
+              <%= image_tag post.user.profile.avatar, class: 'btn-floating '%>
+            <% else %>
+              <%= image_tag 'default_user.png', class: 'btn-floating '%>
+            <% end %>
+            <%= post.user.username %>
+            <p><%= post.content %></p>
+            <small><%= post.created_at.to_s(:datetime_jp)%></small>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="event" v-if="showNumber == 3">
+    <div class="card-panel">
+      <span>
+        あなたの参加予定のイベントが表示されます。
+      </span>
+    </div>
+    <% if @profile.user.join_events %>
+      <% @profile.user.join_events.each do |event| %>
+        <div class="card">
+        <div class="card-content">
+          <%= link_to profile_path(event.user) do %>
+            <% if event.user.profile.avatar.attached? %>
+              <button class="btn-floating"><%= image_tag event.user.profile.avatar %></button>
+            <% else %>
+              <button class="btn-floating"><%= image_tag 'default_user.png' %></button>
+            <% end %>
+          <% end %>
+          <%= event.user.username %>
+          <span class="card-title"><%= event.title %></span></button>
+          <p><%= event.content %></p>
+          <% if current_user?(event.user) %>
+            <i class="material-icons small right grey-text delete" @click="deleteEvent(<%= event.id %>)">delete</i>
+          <% end %>
+          <br>
+        </div>
+        <div class="card-action">
+          <%= link_to '詳細を見る', event_path(event) %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_pack_tag "profile" %>

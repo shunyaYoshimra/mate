@@ -26,9 +26,9 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    profile = current_user.build_profile(profile_params)
-    if profile.save
-      redirect_to profile, notice: '自己紹介しました。'
+    @profile = current_user.build_profile(profile_params)
+    if @profile.save
+      redirect_to @profile, notice: '自己紹介しました。'
     else
       render :new
     end

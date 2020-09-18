@@ -30,11 +30,15 @@
           <% if user_signed_in? %>
             <div class="card-action">
               <small>
+              <% if current_user.profile %>
                 <% if current_user.profile.avatar.attached? %>
                   <%= image_tag current_user.profile.avatar, class: 'btn-floating btn-small' %> コメント...
                 <% else %>
                   <%= image_tag 'default_user.png', class: 'btn-floating btn-small' %> コメント...
                 <% end %>
+              <% else %>
+                コメント...
+              <% end %>
               </small>
               <span class="right" v-if="postId !== <%= post.id %>" @click="showComment(<%= post.id %>)"><i class="material-icons">arrow_drop_down</i></span>
               <span class="right" v-else @click="hideComment(<%= post.id %>)"><i class="material-icons">arrow_drop_up</i></span>

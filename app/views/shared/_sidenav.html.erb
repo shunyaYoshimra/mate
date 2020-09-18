@@ -1,26 +1,28 @@
 <ul class="collection with-header">
   <li class="collection-header"><h4>Mates</h4></li>
   <% if user_signed_in? %>
-  <li class="collection-item">
     <% if current_user.profile %>
-      <%= link_to 'プロフィール', profile_path(current_user.profile) %>
+      <li class="collection-item">
+        <%= link_to 'プロフィール', profile_path(current_user.profile) %>
+      </li>
+      <li class="collection-item">
+        <%= link_to '投稿', new_post_path %>
+      </li>
+      <li class="collection-item">
+        <%= link_to 'イベント一覧', events_path %>
+      </li>
+      <li class="collection-item">
+        <%= link_to 'イベント開催', new_event_path %>
+      </li>
+      <li class="collection-item">
+        <%= link_to 'メッセージ', rooms_path %>
+      </li>
+      <li class="collection-item">menu</li>
+      <li class="collection-item">menu</li>
     <% else %>
-      <%= link_to 'プロフィール', new_profile_path %>
+      <li class="collection-item">
+        <%= link_to 'まずプロフィールを設定する。', new_profile_path %>
+      </li>
     <% end %>
-  </li>
-  <li class="collection-item">
-    <%= link_to '投稿', new_post_path %>
-  </li>
-  <li class="collection-item">
-    <%= link_to 'イベント一覧', events_path %>
-  </li>
-  <li class="collection-item">
-    <%= link_to 'イベント開催', new_event_path %>
-  </li>
-  <li class="collection-item">
-    <%= link_to 'メッセージ', rooms_path %>
-  </li>
-  <li class="collection-item">menu</li>
-  <li class="collection-item">menu</li>
   <% end %>
 </ul>
