@@ -3,7 +3,7 @@
   <div class="card-panel">
     <%= form_with model: @profile, local: true do |f| %>
       <%= f.label :profile, '自己紹介' %>
-      <%= f.text_area :profile, class: 'profile-form' %>
+      <%= f.text_area :profile, class: 'profile-form', required: true %>
       <br><br>
       <label for="image">
         <i class="material-icons medium">add_a_photo</i>背景画像
