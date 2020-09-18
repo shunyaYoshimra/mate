@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'rooms/index'
-  get 'rooms/show'
+  resources :houses, only: [:index, :show, :new, :create, :update]
   resources :rooms, only: [:index, :show, :create]
   resources :relationships, only: [:create, :destroy]
   resources :participants, only: [:create, :destroy]

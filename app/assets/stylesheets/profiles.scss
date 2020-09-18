@@ -12,7 +12,30 @@
   }
 }
 
+#profiles-create {
+  .profile-form {
+    height: calc( 1.3em * 7 );
+    line-height: 1.3;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 10px;
+  }
+}
+
 #profiles-show {
+  img {
+    max-height: 400px;
+  }
+  .profile-form {
+    height: calc( 1.3em * 7 );
+    line-height: 1.3;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 10px;
+  }
+}
+
+#profiles-update {
   img {
     max-height: 400px;
   }

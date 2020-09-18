@@ -1,0 +1,78 @@
+<div class="card" id="sharehouse">
+  <div class="card-content">
+    <div class="row valign-wrapper">
+      <div class="col">
+        <h5><%= @house.name %></h5>
+      </div>
+      <div class="col offset-s4">
+        <%= @house.prefecture %>
+      </div>
+    </div>
+    <%= @house.profile %>
+    <br><br>
+    <p>シェアメイト</p>
+    <% @house.users.each do |mate| %>
+      <%= link_to profile_path(mate.profile) do %>
+        <%= mate.username %>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+  <% @house.users.each do |user| %>
+    <% if current_user?(user) %>
+      <div class="card-action">
+        <span>シェアハウスの情報を編集する</span>
+        <i v-if="!show" @click="show = !show" class="material-icons right">arrow_drop_down</i>
+      <i v-else @click="show = !show" class="material-icons right">arrow_drop_up</i>
+      </div>
+      <div v-if="show">
+        <%= form_with model: @house, local: true do |f| %>
+          <%= f.label :name, '名前' %>
+          <%= f.text_field :name %>
+          <%= f.label :profile, 'シェアハウスについて' %>
+          <%= f.text_area :profile %>
+          <label for="house-edit-btn">
+            <button class="waves-effect waves-light btn"><i class="material-icons right">send</i>編集</button>
+            <%= f.submit class: 'hide', id: 'house-edit-btn'%>
+          </label>
+          <br><br>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% @house.users.each do |mate| %>
+  <% if current_user?(mate) %>
+    <%= form_with model: @house, local: true, class: 'valign-wrapper' do |f| %>
+      <label for="pic">
+        <i class="material-icons medium">add_a_photo</i>
+        <%= f.file_field :pictures, multiple: true, id: 'pic', class: 'hide' %>
+        シェアハウスの写真
+      </label>
+      <label for="pic-btn">
+        <button class="btn-floating pulse"><i class="material-icons right">add</i></button>
+        <%= f.submit class: 'hide', id: 'pic-btn'%>
+      </label>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if @house.pictures.attached? %>
+  <div class="carousel">
+    <% @house.pictures.each do |pic| %>
+      <span class="carousel-item"><%= image_tag pic%></span>
+    <% end %>
+  </div>
+<% end %>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>
+
+<%= javascript_pack_tag "sharehouse" %>
