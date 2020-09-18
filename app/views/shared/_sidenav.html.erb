@@ -17,8 +17,18 @@
       <li class="collection-item">
         <%= link_to 'メッセージ', rooms_path %>
       </li>
-      <li class="collection-item">menu</li>
-      <li class="collection-item">menu</li>
+      <li class="collection-item">
+        <%= link_to 'シェアハウス一覧', houses_path %>
+      </li>
+      <% if current_user.house %>
+        <li class="collection-item">
+          <%= link_to 'マイシェアハウス', house_path(current_user.house) %>
+        </li>
+      <% else %>
+        <li class="collection-item">
+          <%= link_to 'マイシェアハウス', new_house_path %>
+        </li>
+      <% end %>
     <% else %>
       <li class="collection-item">
         <%= link_to 'まずプロフィールを設定する。', new_profile_path %>
