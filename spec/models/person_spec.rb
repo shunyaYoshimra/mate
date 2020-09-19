@@ -27,16 +27,4 @@ RSpec.describe Person, type: :model do
     person.user_id = user.id
     expect(person).to be_valid
    end
-
-  it "is invalid without user_id" do
-    person = Person.new(user_id: nil)
-    person.valid?
-    expect(person.errors[:user_id]).to include("を入力してください")
-  end
-
-  it "is invalid without house_id" do
-    person = Person.new(house_id: nil)
-    person.valid?
-    expect(person.errors[:house_id]).to include("を入力してください")
-  end
 end

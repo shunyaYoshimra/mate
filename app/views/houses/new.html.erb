@@ -1,3 +1,4 @@
+<%= render 'shared/error_messages', model: @house%>
 <div class="card-panel">
   <%= form_with model: @house, local: true do |f| %>
     <%= f.label :name, 'シェアハウスの名前' %>
@@ -8,7 +9,7 @@
     <br><br>
     <div class="input-field">
     <select multiple name="house[user_ids][]">
-      <option disabled selected>選択する</option>
+      <option disabled selected>あなたのフォローしている人</option>
       <% current_user.followings.each do |following| %>
         <option value="<%= following.id %>"><%= following.username %></option>
       <% end %>
