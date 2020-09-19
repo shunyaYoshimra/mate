@@ -2,6 +2,8 @@ class HousesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_house, only: [:show, :update]
   def index
+    @q = House.ransack(params[:q])
+    @houses = @q.result(distinct: true)
   end
 
   def show
