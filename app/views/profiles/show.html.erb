@@ -57,13 +57,13 @@
   <br><br>
   <div class="row">
     <div class="col">
-      <a class="waves-effect waves-light btn" @click="showNumber = 1"><i class="material-icons left">brush</i>投稿</a>
+      <button class="waves-effect waves-light btn profile-btn" @click="showNumber = 1"><i class="material-icons left">brush</i>投稿</button>
     </div>
     <div class="col">
-      <a class="waves-effect waves-light btn" @click="showNumber = 2"><i class="material-icons left">favorite</i>お気に入り</a>
+      <button class="waves-effect waves-light btn profile-btn" @click="showNumber = 2"><i class="material-icons left">favorite</i>お気に入り</button>
     </div>
     <div class="col">
-      <a class="waves-effect waves-light btn" @click="showNumber = 3"><i class="material-icons left">grade</i>イベント</a>
+      <button class="waves-effect waves-light btn profile-btn" @click="showNumber = 3"><i class="material-icons left">grade</i>イベント</button>
     </div>
   </div>
   <div class="post" v-if="showNumber == 1">
