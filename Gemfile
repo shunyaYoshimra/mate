@@ -69,3 +69,5 @@ gem 'material_icons'
 gem 'devise', '4.4.3'
 gem 'geocoder'
 gem 'ransack'
+gem "aws-sdk-s3", require: false
+ 
